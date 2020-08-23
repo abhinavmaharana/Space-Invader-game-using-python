@@ -37,6 +37,16 @@ destroyimg=pygame.image.load("C:/Users/abhin/OneDrive/Desktop/Space Invader Game
 destroyimg=pygame.transform.scale(destroyimg,(60,100))
 pygame.mixer.init()
 
+
+#----------------------------#
+# Displaying score on screen #
+#----------------------------#
+
+def score_screen(text,color,x,y):
+    font=pygame.font.SysFont("comicsansms",30)
+    scoreonscreen=font.render(text,True,color)
+    SCREEN.blit(scoreonscreen,(x,y))
+
 #-------------------------------------------------------#
 #   Welcome screen to user and asking to start the game #
 #-------------------------------------------------------#
@@ -96,3 +106,41 @@ def MYGAME():
     bulletvelocity=0; score=0
     tscore="0"; temp=0
 
+    while True:
+        #-------------------------------------#
+        #   game event handling starts here   #
+        #-------------------------------------#
+        for event in pygame.event.get():
+            #-------------------------------------------------------#
+            # Checking if thr quit button is pressed or not by user #
+            #-------------------------------------------------------#
+            if event.type==QUIT:
+                pygame.quit()
+                sys.exit()
+            #--------------------------------------------------------#
+            # If the player press right key, player velocity changes #
+            #--------------------------------------------------------#    
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_RIGHT:
+                    playervelocity=4
+                #-------------------------------------------------------#
+                # If the player press left key, player velocity changes #
+                #-------------------------------------------------------#
+                if event.key==pygame.K_LEFT:
+                    playervelocity=-4
+                #----------------------------------------------#
+                # if player presses space bar bullet get fired #
+                #----------------------------------------------#
+                 if event.key==pygame.K_SPACE:                 
+                    bulletvelocity=-12
+            
+            if event.type==pygame.KEYUP:
+                if event.key==K_SPACE:
+                    SCREEN.blit(bullet,(playerpos[0]+20,playerpos[1]-50))
+                    pygame.display.update()
+                    bulletpos[1]=int(playerpos[1]-50)
+                    bulletpos[0]=int(playerpos[0]+20)
+
+        #-----------------------------------#
+        #   game event handling ends here   #
+        #-----------------------------------#
