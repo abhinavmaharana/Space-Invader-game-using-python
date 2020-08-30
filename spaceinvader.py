@@ -131,7 +131,7 @@ def MYGAME():
                 #----------------------------------------------#
                 # if player presses space bar bullet get fired #
                 #----------------------------------------------#
-                 if event.key==pygame.K_SPACE:                 
+                if event.key==pygame.K_SPACE:                 
                     bulletvelocity=-12
             
             if event.type==pygame.KEYUP:
@@ -272,7 +272,6 @@ def GAMEOVER():
                 
                 
     FPSCLOCK.tick(FPS)
-
 
 #----------------------------------------#
 #          Running the program           #
